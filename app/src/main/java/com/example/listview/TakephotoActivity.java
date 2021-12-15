@@ -321,7 +321,8 @@ public class TakephotoActivity extends AppCompatActivity implements View.OnClick
                              final String res = response.body().string();
                              if (response.code() == 200) {
                                  Log.v("aaaaa","上传成功");
-                                 Toast.makeText(TakephotoActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                                 //Toast.makeText(TakephotoActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                                 finish();
                              }
                          }
                      });
