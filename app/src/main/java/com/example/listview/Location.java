@@ -197,6 +197,3 @@ public class Location extends AppCompatActivity {
     }
 
 }
-
-
-

@@ -57,4 +57,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.12'
     implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
 }

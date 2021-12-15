@@ -1,18 +1,29 @@
 package com.example.listview;
 
 import java.util.Date;
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class FeedBack {
+    @JSONField(ordinal = 0)
     private long id;  //无需指定
-    private String imageUrl; //图片url
-    private String title;   //标题
-    private String desc;  //描述
-    private String account;  //账号
-    private String address; //地址，定位
-    private String category; //类别：安全隐患、卫生问题、秩序问题
+    @JSONField(ordinal = 1)
+    private String imageUrl=""; //图片url
+    @JSONField(ordinal = 2)
+    private String title="";   //标题
+    @JSONField(ordinal = 3)
+    private String desc="";  //描述
+    @JSONField(ordinal = 4)
+    private String account="";  //账号
+    @JSONField(ordinal = 5)
+    private String address=""; //地址，定位
+    @JSONField(ordinal = 6)
+    private String category="无"; //类别：安全隐患、卫生问题、秩序问题
+    @JSONField(ordinal = 7)
     private int degree;  //级别：0-一般，  1-重要
-    private Date time;  //时间: 2021-11-06T13:14:25.909+00:00
-    private String process; //当前状态："已提交"
+    @JSONField(ordinal = 8)
+    private Date time=new Date();  //时间: 2021-11-06T13:14:25.909+00:00
+    @JSONField(ordinal = 9)
+    private String process="已提交"; //当前状态："已提交"
 
     public FeedBack() {
     }
@@ -96,4 +107,6 @@ public class FeedBack {
     public void setProcess(String process) {
         this.process = process;
     }
+
+
 }

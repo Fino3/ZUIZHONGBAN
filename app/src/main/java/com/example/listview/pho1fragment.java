@@ -77,6 +77,7 @@ public class pho1fragment extends Fragment implements View.OnClickListener {
             case R.id.btn_takephotos:
                 Intent intent=new Intent();
                 intent.setClass(Objects.requireNonNull(getActivity()).getApplicationContext(),TakephotoActivity.class);
+                TakephotoActivity.account=account;
                 startActivity(intent);
                 break;
             case R.id.btn_history:
