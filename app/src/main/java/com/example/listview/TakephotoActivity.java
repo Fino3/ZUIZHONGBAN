@@ -31,11 +31,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,6 +54,8 @@ public class TakephotoActivity extends AppCompatActivity implements View.OnClick
     Bitmap bitmap;
     TextView messagelocation;
     ImageButton btn_getlocation;
+    String uploadFile;
+    String actionUrl="http://49.235.134.191:8080/file/image/upload";
 
 
 
@@ -89,6 +95,65 @@ public class TakephotoActivity extends AppCompatActivity implements View.OnClick
                 startActivityForResult(intent, 0x3);
                 break;
             case R.id.btn_upload:
+//                String end = "/r/n";
+//                String Hyphens = "--";
+//                String boundary = "*****";
+//                try
+//                {
+//                    URL url = new URL(actionUrl);
+//                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+//                    /* 允许Input、Output，不使用Cache */
+//                    con.setDoInput(true);
+//                    con.setDoOutput(true);
+//                    con.setUseCaches(false);
+//                    /* 设定传送的method=POST */
+//                    con.setRequestMethod("POST");
+//                    /* setRequestProperty */
+//                    con.setRequestProperty("Connection", "Keep-Alive");
+//                    con.setRequestProperty("Charset", "UTF-8");
+//                    con.setRequestProperty("Content-Type",
+//                            "multipart/form-data;boundary=" + boundary);
+//                    /* 设定DataOutputStream */
+//                    DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+//                    ds.writeBytes(Hyphens + boundary + end);
+//                    ds.writeBytes("Content-Disposition: form-data; "
+//                            + "name=/"file1/";filename=/"" + newName + "/"" + end);
+//                    ds.writeBytes(end);
+//                    /* 取得文件的FileInputStream */
+//                    FileInputStream fStream = new FileInputStream(uploadFile);
+//                    /* 设定每次写入1024bytes */
+//                    int bufferSize = 1024;
+//                    byte[] buffer = new byte[bufferSize];
+//                    int length = -1;
+//                    /* 从文件读取数据到缓冲区 */
+//                    while ((length = fStream.read(buffer)) != -1)
+//                    {
+//                        /* 将数据写入DataOutputStream中 */
+//                        ds.write(buffer, 0, length);
+//                    }
+//                    ds.writeBytes(end);
+//                    ds.writeBytes(Hyphens + boundary + Hyphens + end);
+//                    fStream.close();
+//                    ds.flush();
+//                    /* 取得Response内容 */
+//                    InputStream is = con.getInputStream();
+//                    int ch;
+//                    StringBuffer b = new StringBuffer();
+//                    while ((ch = is.read()) != -1)
+//                    {
+//                        b.append((char) ch);
+//                    }
+//                    System.out.println("上传成功");
+//                    Toast.makeText(TakephotoActivity.this, "上传成功", Toast.LENGTH_LONG)
+//                            .show();
+//                    ds.close();
+//                } catch (Exception e)
+//                {
+//                    System.out.println("上传失败" + e.getMessage());
+//                    Toast.makeText(TakephotoActivity.this, "上传失败" + e.getMessage(),
+//                            Toast.LENGTH_LONG).show();
+//                }
+//
                 /*Intent intent1 = new Intent(TakephotoActivity.this, Mainfaceactivity.class);
                 Mainfaceactivity.bitmap = bitmap;
                 Mainfaceactivity.ite = item.getText().toString().trim();
@@ -111,98 +176,45 @@ public class TakephotoActivity extends AppCompatActivity implements View.OnClick
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0x1) {
-            if (data != null) {
-                Uri uri = data.getData();
-                //裁剪图片
-                getImg(uri);
-            } else {
-                return;
-            }
-        }
-        if (requestCode == 0x2) {
-            if (data != null) {
-                Bundle bundle = data.getExtras();
-                //得到图片
-                Bitmap bitmap = bundle.getParcelable("data");
-//                //保存到图片到本地
-                saveBitmap(bitmap, "abc");
-                //设置图片
-                ima1.setImageBitmap(bitmap);
-            } else {
-                return;
-            }
-        }
+
         if (requestCode == 0x3) {
             if (data != null) {
                 Bundle bundle = data.getExtras();
                 bitmap = bundle.getParcelable("data");
                 Date date = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String str = format.format(date);
-                saveBitmap(bitmap,str);
+                uploadFile = format.format(date);
+                saveBitmap(bitmap,uploadFile);
                 ima1.setImageBitmap(bitmap);
             } else {
                 return;
             }
-        }
-        if (requestCode == 0x4) {
-            if (data != null) {
-                Bundle bundle = data.getExtras();
-                if (bundle != null) {
-                    //处理代码在此地
-                    String str= bundle.getString("aaa");
-                    messagelocation.setText(str);
+            if (requestCode == 0x4) {
+                Log.v("aaaaa", String.valueOf(data));
+                if (data != null) {
+                    Bundle bundle = data.getExtras();
+                    if (bundle != null) {
+                        //处理代码在此地
+                        String str= bundle.getString("aaa");
+                        messagelocation.setText(str);
+                        //feedBack.setAddress(str);
+                    }
                 }
             }
         }
-    }
 
-    private void getImg(Uri uri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(uri);
-            //从输入流中解码位图
-            // Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-            //保存位图
-            // img.setImageBitmap(bitmap);
-            cutImg(uri);
-            //关闭流
-            inputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
-    //裁剪图片
-    private void cutImg(Uri uri) {
-        if (uri != null) {
-            Intent intent = new Intent("com.android.camera.action.CROP");
-            intent.setDataAndType(uri, "image/*");
-            //true:出现裁剪的框
-            intent.putExtra("crop", "true");
-            //裁剪宽高时的比例
-            intent.putExtra("aspectX", 1);
-            intent.putExtra("aspectY", 1);
-            //裁剪后的图片的大小
-            intent.putExtra("outputX", 300);
-            intent.putExtra("outputY", 300);
-            intent.putExtra("return-data", true);  // 返回数据
-            intent.putExtra("output", uri);
-            intent.putExtra("scale", true);
-            startActivityForResult(intent, 0x2);
-        } else {
-            return;
-        }
-    }
 
-    public static void saveBitmap(Bitmap bm, String picName) {
+
+    public String sdCardDir = Environment.getExternalStorageDirectory() + "/fingerprintimages/";
+    public void saveBitmap(Bitmap bm, String picName) {
         Log.e("", "保存图片");
+        Log.v("aaaaa", String.valueOf(getExternalFilesDir(null)));
         try {
 
-            File f = new File(SDPATH, picName + ".JPEG");
+            File f = new File(getExternalFilesDir(null), picName + ".JPEG");
             if (f.exists()) {
                 f.delete();
             }
@@ -216,33 +228,11 @@ public class TakephotoActivity extends AppCompatActivity implements View.OnClick
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
 
 
-    /**
-     * 通过URI获取文件的路径
-     * @param uri
-     * @param activity
-     */
-    public static String getFilePathWithUri(Uri uri, Activity activity) throws Exception {
-        if (uri == null) {
-            return "";
-        }
-        String picturePath = null;
-        String scheme = uri.getScheme();
-        if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = activity.getContentResolver().query(uri,
-                    filePathColumn, null, null, null);//从系统表中查询指定Uri对应的照片
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);  //获取照片路径
-            cursor.close();
-        } else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
-            picturePath = uri.getPath();
-        }
-        return picturePath;
-    }
+
 }

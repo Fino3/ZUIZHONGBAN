@@ -17,10 +17,9 @@
         android:id="@+id/btn_history"
         android:layout_width="132dp"
         android:layout_height="127dp"
-        android:layout_toRightOf="@id/btn_takephotos"
         android:layout_alignTop="@id/btn_takephotos"
         android:layout_marginLeft="30dp"
-        android:background="@drawable/history_records"
-        />
+        android:layout_toRightOf="@id/btn_takephotos"
+        android:background="@drawable/history_records" />
 
 </RelativeLayout>

@@ -28,7 +28,7 @@ public class pho1fragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    public  String account;
     private Button btn_takephotos;
     private Button btn_history;
 
@@ -67,14 +67,24 @@ public class pho1fragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = View.inflate(getActivity(),R.layout.fragment_pho1fragment,null);
         view.findViewById(R.id.btn_takephotos).setOnClickListener(this);
+        view.findViewById(R.id.btn_history).setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View view) {
-        Intent intent=new Intent();
+        switch (view.getId()){
+            case R.id.btn_takephotos:
+                Intent intent=new Intent();
+                intent.setClass(Objects.requireNonNull(getActivity()).getApplicationContext(),TakephotoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_history:
+                Intent intent1=new Intent();
+                intent1.setClass(Objects.requireNonNull(getActivity()).getApplicationContext(),HistoryActivity.class);
+                HistoryActivity.account=account;
+                startActivity(intent1);
+        }
 
-        intent.setClass(Objects.requireNonNull(getActivity()).getApplicationContext(),TakephotoActivity.class);
-        startActivity(intent);
     }
 }

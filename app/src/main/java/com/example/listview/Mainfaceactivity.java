@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Mainfaceactivity extends AppCompatActivity {
+    public static String account;
     BottomNavigationView bottomNavigationView;
     protected static  Bitmap bitmap;
     protected static String ite;
@@ -60,6 +61,7 @@ public class Mainfaceactivity extends AppCompatActivity {
                     break;
                 case R.id.pho1:
                     fragment=new pho1fragment();
+                    ((pho1fragment) fragment).account=account;
                     break;
                 case R.id.pho2:
                     fragment=new pho2fragment();

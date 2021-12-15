@@ -3,10 +3,8 @@ package com.example.listview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class registeractivity extends AppCompatActivity implements View.OnClickListener {
     EditText account;
@@ -56,6 +52,8 @@ public class registeractivity extends AppCompatActivity implements View.OnClickL
                     }
                     jsonStr = new String(out.toByteArray());
                     Result result = JSONObject.parseObject(jsonStr, Result.class);
+                    Object oj=result.getData();
+                    Toast.makeText(registeractivity.this, (String) oj,Toast.LENGTH_SHORT).show();
                     if (result.getCode()==200) {
                         Toast.makeText(registeractivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent();

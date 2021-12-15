@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity  {
                                     out.write(buffer, 0, len);
                                 }
                                 jsonStr = new String(out.toByteArray());
+                                Log.v("mybug",jsonStr);
                                 Result result = JSONObject.parseObject(jsonStr, Result.class);
                                 Log.v("debug",result.toString());
                                 if (result.getCode()==200) {
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity  {
                                     Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                                     Intent intent1 = new Intent();
                                     intent1.setClass(getApplicationContext(), Mainfaceactivity.class);
+                                    Mainfaceactivity.account=name;
                                     startActivity(intent1);
                                     conn.disconnect();
                                 }
@@ -146,8 +148,12 @@ public class MainActivity extends AppCompatActivity  {
                     }
                     break;
                 case R.id.btn_register:
+//                    Intent intent2=new Intent();
+//                    intent2.setClass(getApplicationContext(),registeractivity.class);
+//                    startActivity(intent2);
+//                    break;
                     Intent intent2=new Intent();
-                    intent2.setClass(getApplicationContext(),registeractivity.class);
+                    intent2.setClass(getApplicationContext(),MainActivity2.class);
                     startActivity(intent2);
                     break;
             }

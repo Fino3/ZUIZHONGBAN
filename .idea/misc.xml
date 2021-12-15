@@ -21,13 +21,24 @@
         <entry key="..\:/QQ/Download/525537668/FileRecv/Listview/app/src/main/res/layout/pho1.xml" value="0.24947916666666667" />
         <entry key="..\:/QQ/Download/525537668/FileRecv/Listview/app/src/main/res/layout/take_photos.xml" value="0.24947916666666667" />
         <entry key="..\:/QQ/Download/525537668/FileRecv/Listview/app/src/main/res/xml/network_security_config.xml" value="0.1265625" />
+        <entry key="..\:/android/app/src/main/res/drawable-hdpi/timelline_dot_first.xml" value="0.2574074074074074" />
+        <entry key="..\:/android/app/src/main/res/drawable-hdpi/timelline_dot_normal.xml" value="0.2574074074074074" />
         <entry key="..\:/android/app/src/main/res/drawable/button_circle_shape.xml" value="0.26979166666666665" />
+        <entry key="..\:/android/app/src/main/res/drawable/timelline_dot_normal.xml" value="0.2574074074074074" />
+        <entry key="..\:/android/app/src/main/res/layout/activity_history.xml" value="0.25364583333333335" />
+        <entry key="..\:/android/app/src/main/res/layout/activity_jinduview.xml" value="0.1296875" />
+        <entry key="..\:/android/app/src/main/res/layout/activity_location.xml" value="0.1296875" />
         <entry key="..\:/android/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/android/app/src/main/res/layout/activity_main2.xml" value="0.2390625" />
+        <entry key="..\:/android/app/src/main/res/layout/fb_item.xml" value="0.25364583333333335" />
         <entry key="..\:/android/app/src/main/res/layout/fragment_mainfacefragment.xml" value="0.24947916666666667" />
         <entry key="..\:/android/app/src/main/res/layout/fragment_pho1fragment.xml" value="0.24947916666666667" />
+        <entry key="..\:/android/app/src/main/res/layout/item_trace.xml" value="0.264" />
+        <entry key="..\:/android/app/src/main/res/layout/list_item.xml" value="0.25364583333333335" />
         <entry key="..\:/android/app/src/main/res/layout/main_face.xml" value="0.264" />
         <entry key="..\:/android/app/src/main/res/layout/menu.xml" value="0.1265625" />
         <entry key="..\:/android/app/src/main/res/layout/news.xml" value="0.24947916666666667" />
+        <entry key="..\:/android/app/src/main/res/menu/menu.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
