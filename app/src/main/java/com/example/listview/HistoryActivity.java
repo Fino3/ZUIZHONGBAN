@@ -27,7 +27,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Objects;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -133,11 +132,20 @@ public class HistoryActivity extends AppCompatActivity {
                                                 //Toast.makeText(HistoryActivity.this,id[i],Toast.LENGTH_SHORT).show();
                                                 Log.e("TAG","匿名内部类实现的点击事件");
                                                 Intent intent2=new Intent();
-                                                intent2.setClass(getApplicationContext(),jinduview.class);
-                                                jinduview.feed_back_id=id[i];
+                                                intent2.setClass(getApplicationContext(), JinduActivity.class);
+                                                JinduActivity.feed_back_id=id[i];
                                                 startActivity(intent2);
                                             }
                                         });
+            Button btnpingjia=view.findViewById(R.id.btn_pingjia);
+            btnpingjia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent();
+                    intent.setClass(getApplicationContext(),PingjiaActivity.class);
+                    startActivity(intent);
+                }
+            });
             title.setText(titles[i]);
             details.setText(detailss[i]);
             date1.setText(dates[i]);
