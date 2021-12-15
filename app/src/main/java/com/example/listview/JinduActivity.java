@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 
-public class jinduview extends AppCompatActivity {
+public class JinduActivity extends AppCompatActivity {
     public static int feed_back_id=20;
     private String[] titles={};
     private String[] detailss={};
@@ -61,7 +60,7 @@ public class jinduview extends AppCompatActivity {
 
         @Override
         public View getView(int i, View convertView, ViewGroup viewGroup) {
-            View view=View.inflate(jinduview.this,R.layout.item_trace,null);
+            View view=View.inflate(JinduActivity.this,R.layout.item_trace,null);
             TextView title=view.findViewById(R.id.title);
             TextView details=view.findViewById(R.id.details);
             TextView date1=view.findViewById(R.id.time);
@@ -110,7 +109,7 @@ public class jinduview extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(jinduview.this,result.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JinduActivity.this,result.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (IOException e) {
