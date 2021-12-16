@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity  {
         cb_autologin=findViewById(R.id.cb_autologin);
         bt_register=findViewById(R.id.btn_register);
         bt_login=findViewById(R.id.btn_login);
-
+        et_pwd.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PASSWORD);
         MyOnClickListener l=new MyOnClickListener();
         bt_login.setOnClickListener(l);
         bt_register.setOnClickListener(l);
@@ -148,14 +149,11 @@ public class MainActivity extends AppCompatActivity  {
                     }
                     break;
                 case R.id.btn_register:
-//                    Intent intent2=new Intent();
-//                    intent2.setClass(getApplicationContext(),registeractivity.class);
-//                    startActivity(intent2);
-//                    break;
                     Intent intent2=new Intent();
-                    intent2.setClass(getApplicationContext(),MainActivity2.class);
+                    intent2.setClass(getApplicationContext(),registeractivity.class);
                     startActivity(intent2);
                     break;
+
             }
         }
     }

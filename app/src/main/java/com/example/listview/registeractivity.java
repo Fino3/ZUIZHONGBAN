@@ -3,6 +3,7 @@ package com.example.listview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class registeractivity extends AppCompatActivity implements View.OnClickL
         account=findViewById(R.id.ett_account);
         password=findViewById(R.id.ett_password);
         samepassword=findViewById(R.id.ett_samepassword);
+        password.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        samepassword.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PASSWORD);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }

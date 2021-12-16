@@ -14,11 +14,11 @@
         android:id="@+id/fragmentContainer"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
         android:background="@color/cardview_light_background"
-        app:menu="@menu/menu"
-        android:id="@+id/bottomNav"/>
+        app:menu="@menu/menu" />
 
 </RelativeLayout>
